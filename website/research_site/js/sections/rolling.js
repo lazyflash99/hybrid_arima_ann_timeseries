@@ -33,7 +33,7 @@ async function render() {
   const lo = Math.max(1, d.n_train - 40);
   lay.xaxis.range = [lo, d.series.length + 1];
   lay.shapes = [
-    { type: "rect", xref: "x", yref: "paper", x0: 0.5, x1: fitEnd + 0.5, y0: 0, y1: 1, fillcolor: hexToRgba("#0072B2", 0.10), line: { width: 0 } },
+    { type: "rect", xref: "x", yref: "paper", x0: 0.5, x1: fitEnd + 0.5, y0: 0, y1: 1, fillcolor: hexToRgba("#17637a", 0.10), line: { width: 0 } },
     ...d.refit_origins.map((o) => ({ type: "line", xref: "x", yref: "paper", x0: o + 0.5, x1: o + 0.5, y0: 0, y1: 1, line: { color: t.ink2, width: 1, dash: "dash" } })),
   ];
   lay.annotations = [{ x: fitEnd + 0.5, y: 1, xref: "x", yref: "paper", text: "end of training window", showarrow: false, xanchor: "right", yanchor: "bottom",

@@ -194,7 +194,7 @@ def main():
                     page.screenshot(path=os.path.join(SHOTS, f"full_{width}_{theme}.png"), full_page=True)
                     if width == 1280:
                         page.add_style_tag(content=".topbar{position:static !important}")
-                        for s in SECTIONS + ["about"]:
+                        for s in SECTIONS:
                             page.locator(f"#{s}").screenshot(path=os.path.join(SHOTS, f"{s}_{theme}.png"))
                         page.evaluate("() => document.querySelectorAll('style').forEach(e => e.textContent.includes('.topbar{position:static') && e.remove())")
                     if width == 1280 and theme == "light":

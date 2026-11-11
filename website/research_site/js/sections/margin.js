@@ -23,7 +23,7 @@ async function render() {
   ];
   if (state.idx !== 0) traces.push({ x: sm.years, y: base.forecast, name: "Extension forecast, margin 0", line: { color: color("Extension"), width: 1.2, dash: "dot" } });
   const lay = layout({ title: `Sunspot test years: Extension forecast with scale margin ${m} (mean over ${sm.seeds.length} seeds)`, x: "year", y: "sunspot number", height: 540 });
-  lay.shapes = [{ type: "rect", xref: "paper", x0: 0, x1: 1, yref: "y", y0: sm.train_min, y1: sm.train_max, fillcolor: hexToRgba("#0072B2", 0.08), line: { width: 0 } },
+  lay.shapes = [{ type: "rect", xref: "paper", x0: 0, x1: 1, yref: "y", y0: sm.train_min, y1: sm.train_max, fillcolor: hexToRgba("#17637a", 0.08), line: { width: 0 } },
                 { type: "line", xref: "paper", x0: 0, x1: 1, yref: "y", y0: sm.train_max, y1: sm.train_max, line: { color: t.ink2, dash: "dash", width: 1.2 } }];
   lay.annotations = [{ xref: "paper", x: 0.01, yref: "y", y: sm.train_max, text: `training maximum ${fmt(sm.train_max)}`, showarrow: false, yanchor: "bottom", xanchor: "left", font: { size: 14 } }];
   await plot(el.chart, traces, lay);

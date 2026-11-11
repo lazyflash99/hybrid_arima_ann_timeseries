@@ -1,5 +1,5 @@
 // Entry point: theme toggle, menu, outbound links, and lazy start of each section when it comes near the viewport.
-import { GITHUB_URL, PLAYGROUND_URL } from "./links.js";
+import { PLAYGROUND_URL } from "./links.js";
 import { redrawAll } from "./charts.js";
 
 const SECTIONS = {
@@ -40,9 +40,6 @@ async function start(id) {
 
 function main() {
   document.getElementById("playground-link").href = PLAYGROUND_URL;
-  const repo = document.getElementById("repo-link");
-  repo.href = GITHUB_URL;
-  repo.textContent = `Source code on GitHub (${GITHUB_URL})`;
 
   const initial = document.documentElement.dataset.theme
     || (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");

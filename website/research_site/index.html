@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=1280">
 <title>Hybrid ARIMA and Neural Network Forecasting</title>
 <meta name="description" content="Interactive results of our reproduction of Zhang (2003) and the Extension on 11 datasets.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 12 L5 6 L9 9 L15 2' stroke='%230072B2' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 12 L5 6 L9 9 L15 2' stroke='%2317637A' stroke-width='2' fill='none'/%3E%3C/svg%3E">
 <link rel="stylesheet" href="vendor/katex/katex.min.css">
 <link rel="stylesheet" href="css/style.css">
 <script>
@@ -28,7 +28,6 @@
       <a href="#seedfan">Seeds</a>
       <a href="#margin">Scale margin</a>
       <a href="#grid">Alternatives</a>
-      <a href="#about">About</a>
       <a id="playground-link" class="external" href="#">Draw your own series</a>
     </nav>
     <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch between light and dark mode">Dark mode</button>
@@ -194,35 +193,6 @@
     <div id="gr-table"></div>
   </section>
 
-  <section class="panel" id="about" aria-labelledby="ab-h">
-    <h2 id="ab-h">11. About and reproduce</h2>
-    <div class="grid-2">
-      <div>
-        <h3>Project</h3>
-        <p>DA 3041 course project, Indian Institute of Technology Guwahati.<br>
-          Arnav Sinha, Arghya Ojha, Kanhav Purohit, Mohammad Shafqat Jabbar.</p>
-        <p><a id="repo-link" href="#">Source code on GitHub</a> · <a href="report.pdf">Read the report (PDF)</a></p>
-        <h3>Paper reproduced</h3>
-        <p>G. P. Zhang (2003). Time series forecasting using a hybrid ARIMA and neural network model. <i>Neurocomputing</i> 50, 159–175.</p>
-        <h3>Cite this project</h3>
-        <pre class="cmd">Sinha, A., Ojha, A., Purohit, K., Jabbar, M. S. (2026). Hybrid ARIMA and Neural Network
-Forecasting Revisited: Reproduction, Stricter Validation and Alternatives.
-DA 3041 course project, IIT Guwahati.</pre>
-      </div>
-      <div>
-        <h3>Run the code</h3>
-        <pre class="cmd">pip install -r requirements.txt
-python run_all.py --quick                       # a few minutes
-python run_all.py --full                        # every result, about 54 minutes
-python -m pytest tests_check_everything_works</pre>
-        <h3>Rebuild this site's data</h3>
-        <pre class="cmd">python website/export_json.py
-python website/website_experiments.py
-python website/build_site_data.py
-cd website/research_site && python -m http.server 8000</pre>
-      </div>
-    </div>
-  </section>
 </main>
 <footer>All numbers are loaded from JSON written by the project's Python code. Charts by Plotly; equations by KaTeX.</footer>
 

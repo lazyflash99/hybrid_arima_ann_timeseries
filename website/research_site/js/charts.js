@@ -3,20 +3,20 @@
 
 export const MODELS = ["ARIMA", "ANN", "Zhang", "Extension", "Extension margin", "E1", "E2", "E3", "E4", "E5", "E6", "E7"];
 
-// Okabe-Ito and Paul Tol colours, chosen to stay distinguishable with colour-vision deficiency
+// Muted academic palette, chosen to stay distinguishable with colour-vision deficiency
 export const MODEL_COLORS = {
-  "ARIMA": "#56B4E9",
-  "ANN": "#999933",
-  "Zhang": "#0072B2",
-  "Extension": "#D55E00",
-  "Extension margin": "#CC79A7",
-  "E1": "#009E73",
-  "E2": "#E69F00",
-  "E3": "#882255",
-  "E4": "#44AA99",
-  "E5": "#AA4499",
-  "E6": "#332288",
-  "E7": "#88CCEE",
+  "ARIMA": "#4c8795",
+  "ANN": "#a6783d",
+  "Zhang": "#17637a",
+  "Extension": "#b45f3c",
+  "Extension margin": "#876b91",
+  "E1": "#3e806d",
+  "E2": "#b28a43",
+  "E3": "#76556e",
+  "E4": "#528b83",
+  "E5": "#946b63",
+  "E6": "#4d6582",
+  "E7": "#6d9aa2",
 };
 
 export const MODEL_LABELS = {

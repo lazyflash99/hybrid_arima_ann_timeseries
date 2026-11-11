@@ -5,7 +5,7 @@ import { addNoise, createCanvas, toSeries } from "./canvas.js";
 import { RESEARCH_URL } from "./links.js";
 
 // the research site's colours: ARIMA (here the linear stage) and Zhang's hybrid (here the hybrid and its network part)
-const COLORS = { linear: "#56B4E9", hybrid: "#0072B2" };
+const COLORS = { linear: "#4c8795", hybrid: "#17637a" };
 const FONT = '"Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif';
 const PLOT_CONFIG = { responsive: true, displaylogo: false, modeBarButtonsToRemove: ["lasso2d", "select2d", "autoScale2d"] };
 

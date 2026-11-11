@@ -1,41 +1,41 @@
 /* Draw your own series: colours, fonts and menu copied from the research site so the two look related.
    Desktop only (1280 px and wider). */
 :root {
-  --bg: #fbfbfa;
+  --bg: #f3f5f6;
   --surface: #ffffff;
-  --surface-2: #f2f1ee;
-  --ink: #17181a;
-  --ink-2: #4a4c50;
-  --line: #d9d8d3;
-  --grid: #ecebe7;
-  --accent: #0b5cad;
-  --good: #11663b;
-  --good-bg: #e3f3ea;
-  --bad: #a3271c;
-  --bad-bg: #fbe6e3;
-  --neutral-bg: #ecebe7;
-  --focus: #0b5cad;
-  --shadow: 0 1px 2px rgba(0, 0, 0, .06);
-  --held: rgba(11, 92, 173, .08);
+  --surface-2: #e9eef0;
+  --ink: #172532;
+  --ink-2: #52616b;
+  --line: #cbd5da;
+  --grid: #dce5e8;
+  --accent: #17637a;
+  --good: #28664d;
+  --good-bg: #e1eee8;
+  --bad: #a14d3d;
+  --bad-bg: #f5e5e1;
+  --neutral-bg: #e3e9eb;
+  --focus: #17637a;
+  --shadow: 0 2px 8px rgba(23, 37, 50, .07);
+  --held: rgba(23, 99, 122, .09);
   color-scheme: light;
 }
 :root[data-theme="dark"] {
-  --bg: #121315;
-  --surface: #1b1d20;
-  --surface-2: #24272b;
-  --ink: #ececea;
-  --ink-2: #b7b8b5;
-  --line: #3a3d42;
-  --grid: #2a2d31;
-  --accent: #79b5f2;
-  --good: #7dd3a3;
-  --good-bg: #173326;
-  --bad: #f2a097;
-  --bad-bg: #3b1d1a;
-  --neutral-bg: #2b2e33;
-  --focus: #79b5f2;
+  --bg: #101a22;
+  --surface: #182630;
+  --surface-2: #223440;
+  --ink: #edf2f3;
+  --ink-2: #b7c5ca;
+  --line: #3b505b;
+  --grid: #2f444f;
+  --accent: #72b5bd;
+  --good: #8bc7a8;
+  --good-bg: #1b3d35;
+  --bad: #e0a095;
+  --bad-bg: #4a2928;
+  --neutral-bg: #2a3e49;
+  --focus: #72b5bd;
   --shadow: none;
-  --held: rgba(121, 181, 242, .10);
+  --held: rgba(114, 181, 189, .12);
   color-scheme: dark;
 }
 
