@@ -1,0 +1,143 @@
+/* Draw your own series: colours, fonts and menu copied from the research site so the two look related.
+   Desktop only (1280 px and wider). */
+:root {
+  --bg: #fbfbfa;
+  --surface: #ffffff;
+  --surface-2: #f2f1ee;
+  --ink: #17181a;
+  --ink-2: #4a4c50;
+  --line: #d9d8d3;
+  --grid: #ecebe7;
+  --accent: #0b5cad;
+  --good: #11663b;
+  --good-bg: #e3f3ea;
+  --bad: #a3271c;
+  --bad-bg: #fbe6e3;
+  --neutral-bg: #ecebe7;
+  --focus: #0b5cad;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .06);
+  --held: rgba(11, 92, 173, .08);
+  color-scheme: light;
+}
+:root[data-theme="dark"] {
+  --bg: #121315;
+  --surface: #1b1d20;
+  --surface-2: #24272b;
+  --ink: #ececea;
+  --ink-2: #b7b8b5;
+  --line: #3a3d42;
+  --grid: #2a2d31;
+  --accent: #79b5f2;
+  --good: #7dd3a3;
+  --good-bg: #173326;
+  --bad: #f2a097;
+  --bad-bg: #3b1d1a;
+  --neutral-bg: #2b2e33;
+  --focus: #79b5f2;
+  --shadow: none;
+  --held: rgba(121, 181, 242, .10);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 16px/1.6 "Segoe UI", system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
+  min-width: 1280px;
+}
+a { color: var(--accent); }
+:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; }
+
+/* top menu */
+.topbar {
+  position: sticky; top: 0; z-index: 10;
+  background: var(--surface);
+  border-bottom: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+.topbar-inner {
+  max-width: 1240px; margin: 0 auto; padding: 6px 20px;
+  display: flex; align-items: center; gap: 14px; min-height: 60px;
+}
+.brand { font-weight: 700; font-size: 17px; white-space: nowrap; color: var(--ink); text-decoration: none; }
+.menu { display: flex; gap: 2px; flex-wrap: wrap; flex: 1; }
+.menu a { color: var(--ink-2); text-decoration: none; font-size: 15px; padding: 5px 9px; border-radius: 6px; white-space: nowrap; }
+.menu a:hover { color: var(--ink); background: var(--surface-2); }
+.menu a.external { color: var(--accent); font-weight: 600; }
+.theme-toggle {
+  border: 1px solid var(--line); background: var(--surface-2); color: var(--ink);
+  font-size: 15px; padding: 6px 12px; border-radius: 6px; cursor: pointer; white-space: nowrap;
+}
+
+/* layout */
+main { max-width: 1240px; margin: 0 auto; padding: 24px 20px 60px; }
+.hero { padding: 24px 0 4px; }
+.hero h1 { font-size: 34px; line-height: 1.25; margin: 0 0 10px; }
+.hero p { font-size: 18px; color: var(--ink-2); max-width: 940px; margin: 0; }
+section.panel {
+  background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+  padding: 24px 30px 28px; margin: 24px 0; box-shadow: var(--shadow);
+}
+section.panel > h2 { font-size: 26px; margin: 0 0 8px; }
+.lead { color: var(--ink-2); font-size: 17px; margin: 0 0 14px; max-width: 980px; }
+h3 { font-size: 19px; margin: 0 0 6px; }
+.small { font-size: 15px; color: var(--ink-2); margin: 6px 0 0; }
+
+/* controls */
+.controls { display: flex; flex-wrap: wrap; gap: 12px 26px; align-items: center; margin: 4px 0 14px; }
+.control { display: flex; align-items: center; gap: 8px; font-size: 15px; margin: 6px 0; flex-wrap: wrap; }
+.label { font-weight: 600; }
+output { font-variant-numeric: tabular-nums; min-width: 3ch; font-weight: 600; }
+button.btn {
+  font: inherit; font-size: 15px; padding: 6px 13px; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--surface-2); color: var(--ink); cursor: pointer;
+}
+button.btn:hover { border-color: var(--accent); }
+button.btn.primary { background: var(--accent); border-color: var(--accent); color: var(--surface); font-weight: 600; }
+button.btn.active { outline: 2px solid var(--accent); }
+button.btn:disabled { opacity: .45; cursor: default; }
+input[type="range"] { width: 240px; accent-color: var(--accent); }
+input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--accent); }
+fieldset { border: 1px solid var(--line); border-radius: 8px; padding: 10px 16px 14px; margin: 0; }
+legend { font-size: 16px; font-weight: 600; padding: 0 4px; }
+.model-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 18px; }
+.status { font-size: 15px; color: var(--ink-2); margin: 12px 0 0; min-height: 1.6em; font-variant-numeric: tabular-nums; }
+
+/* canvas */
+#canvas {
+  display: block; width: 100%; height: 320px; cursor: crosshair;
+  border: 1px solid var(--line); border-radius: 8px; background: var(--surface);
+}
+.warnings { min-height: 1.6em; margin: 8px 0 0; font-size: 15px; color: var(--bad); }
+
+/* results */
+.howto {
+  background: var(--surface-2); border-left: 4px solid var(--accent); border-radius: 0 6px 6px 0;
+  padding: 10px 16px; margin: 0 0 14px; font-size: 16px;
+}
+.howto p { margin: 0; }
+.checks { display: flex; flex-wrap: wrap; gap: 6px 18px; align-items: center; font-size: 15px; }
+.checks label { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+.swatch { display: inline-block; width: 22px; height: 4px; border-radius: 2px; }
+.chart { width: 100%; }
+.chart.main { min-height: 760px; }
+.chart.small-chart { min-height: 340px; }
+.note { font-size: 15px; color: var(--ink-2); font-style: italic; margin: 4px 0 16px; }
+.verdict-row { display: flex; align-items: center; gap: 14px; margin: 6px 0 10px; font-size: 16px; }
+.badge { font-size: 15px; padding: 4px 12px; border-radius: 999px; background: var(--neutral-bg); white-space: nowrap; }
+.badge.big { font-size: 17px; font-weight: 600; padding: 6px 16px; }
+.badge.good { background: var(--good-bg); color: var(--good); }
+.badge.bad { background: var(--bad-bg); color: var(--bad); }
+.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 10px 0 18px; }
+.card { border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; background: var(--surface-2); }
+.card .k { font-size: 14px; color: var(--ink-2); }
+.card .v { font-size: 22px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.card .s { font-size: 14px; color: var(--ink-2); }
+.card .v.good { color: var(--good); }
+.card .v.bad { color: var(--bad); }
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+footer { text-align: center; color: var(--ink-2); font-size: 15px; padding: 24px; }

@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Draw your own series</title>
+<meta name="description" content="Draw a time series and watch a simplified linear model plus neural network hybrid fit it, live in the browser.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 11 C4 2 7 14 10 6 S14 4 15 3' stroke='%23D55E00' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // apply the saved theme before the page paints (same key as the research site)
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) { /* storage blocked */ }
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">Draw your own series</a>
+    <nav class="menu" aria-label="Sections">
+      <a href="#draw">Draw</a>
+      <a href="#models">Models</a>
+      <a href="#results">Results</a>
+      <a id="research-link" class="external" href="#">Research site</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch between light and dark mode">Dark mode</button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <h1>Draw your own series</h1>
+    <p>Draw a time series and watch a two-stage hybrid fit it: a linear autoregressive model first, then a small neural
+      network on what the linear model missed. Everything runs in your browser; every number is computed from your drawing.</p>
+  </div>
+
+  <section class="panel" id="draw" aria-labelledby="draw-h">
+    <h2 id="draw-h">1. Draw a series</h2>
+    <div class="controls">
+      <div class="control" role="group" aria-label="Presets">
+        <span class="label">Presets</span>
+        <button class="btn preset" type="button" data-preset="Sine + trend">Sine + trend</button>
+        <button class="btn preset" type="button" data-preset="Sawtooth">Sawtooth</button>
+        <button class="btn preset" type="button" data-preset="Random walk">Random walk</button>
+        <button class="btn preset" type="button" data-preset="Quiet then spike">Quiet then spike</button>
+      </div>
+      <div class="control">
+        <button class="btn" type="button" id="undo">Undo</button>
+        <button class="btn" type="button" id="clear">Clear</button>
+      </div>
+    </div>
+    <canvas id="canvas" aria-label="Drawing area: hold the mouse button and draw a curve from left to right"></canvas>
+    <div id="warnings" class="warnings" role="status" aria-live="polite"></div>
+    <div class="controls sliders">
+      <div class="control">
+        <label class="label" for="n-points">Points (N)</label>
+        <input type="range" id="n-points" min="60" max="200" step="10" value="100">
+        <output for="n-points" id="n-points-out">100</output>
+      </div>
+      <div class="control">
+        <label class="label" for="noise">Noise (% of the series' standard deviation)</label>
+        <input type="range" id="noise" min="0" max="30" step="1" value="0">
+        <output for="noise" id="noise-out">0%</output>
+        <button class="btn" type="button" id="reroll">Re-roll noise</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="models" aria-labelledby="models-h">
+    <h2 id="models-h">2. Models</h2>
+    <p class="lead">Both stages are fitted on the first 70% of the points only. The last 30% are held out and used only to
+      measure the forecasts.</p>
+    <div class="model-grid">
+      <fieldset>
+        <legend>Stage 1: simplified linear model (AR)</legend>
+        <div class="control">
+          <label class="label" for="ar-p">AR order p</label>
+          <input type="range" id="ar-p" min="1" max="6" step="1" value="2">
+          <output for="ar-p" id="ar-p-out">2</output>
+        </div>
+        <div class="control">
+          <input type="checkbox" id="diff">
+          <label for="diff">Model the first difference, y(t) − y(t−1)</label>
+        </div>
+        <p id="ar-text" class="small"></p>
+      </fieldset>
+      <fieldset>
+        <legend>Stage 2: neural network on the residuals</legend>
+        <div class="control">
+          <label class="label" for="hidden">Hidden nodes</label>
+          <input type="range" id="hidden" min="1" max="10" step="1" value="4">
+          <output for="hidden" id="hidden-out">4</output>
+        </div>
+        <div class="control">
+          <label class="label" for="lags">Residual lags</label>
+          <input type="range" id="lags" min="1" max="6" step="1" value="2">
+          <output for="lags" id="lags-out">2</output>
+        </div>
+        <div class="control">
+          <label class="label" for="epochs">Epochs</label>
+          <input type="range" id="epochs" min="50" max="500" step="10" value="200">
+          <output for="epochs" id="epochs-out">200</output>
+        </div>
+        <div class="control">
+          <button class="btn" type="button" id="stop">Stop</button>
+          <button class="btn primary" type="button" id="retrain">Retrain</button>
+          <button class="btn" type="button" id="reinit">Re-initialise</button>
+          <span id="seed-text" class="small"></span>
+        </div>
+      </fieldset>
+    </div>
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+  </section>
+
+  <section class="panel" id="results" aria-labelledby="results-h">
+    <h2 id="results-h">3. Results</h2>
+    <div class="howto" id="howto">
+      <h3>How to read this</h3>
+      <p>The top panel shows your series, the linear forecast and the hybrid forecast; the shaded part on the right is held out.
+        The middle panel shows what the linear model missed and what the network predicted of it.
+        The bottom panel shows the error left after both stages; the metric cards compare the two models on both parts.</p>
+    </div>
+    <div class="checks" role="group" aria-label="Lines to show">
+      <span class="label">Show</span>
+      <label><input type="checkbox" id="show-series" checked><span class="swatch" data-color="series"></span>Your series</label>
+      <label><input type="checkbox" id="show-linear" checked><span class="swatch" data-color="linear"></span>Linear forecast L̂</label>
+      <label><input type="checkbox" id="show-hybrid" checked><span class="swatch" data-color="hybrid"></span>Hybrid forecast L̂ + N̂</label>
+    </div>
+    <div id="main-chart" class="chart main"></div>
+    <p class="note" id="demo-note">This is a simplified browser demo of the idea, not the full pipeline used in our experiments.</p>
+
+    <div class="verdict-row">
+      <span id="verdict" class="badge big"></span>
+      <span id="verdict-text"></span>
+    </div>
+    <div class="cards" id="cards"></div>
+    <div class="grid-2">
+      <div id="loss-chart" class="chart small-chart"></div>
+      <div id="acf-chart" class="chart small-chart"></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <a id="research-footer-link" href="#">Back to the research site</a> ·
+  Runs entirely in your browser. Charts by Plotly.
+</footer>
+
+<script src="vendor/plotly-2.35.2.min.js"></script>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

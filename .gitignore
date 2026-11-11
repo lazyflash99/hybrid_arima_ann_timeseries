@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# LaTeX build files
+*.aux
+*.log
+*.blg
+*.bbl
+*.nav
+*.snm
+*.toc
+*.out
+*.synctex.gz
+
+# built websites (website/build_pages.py)
+_pages/

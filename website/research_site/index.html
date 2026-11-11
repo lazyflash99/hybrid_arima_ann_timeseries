@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<title>Hybrid ARIMA and Neural Network Forecasting</title>
+<meta name="description" content="Interactive results of our reproduction of Zhang (2003) and the Extension on 11 datasets.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 12 L5 6 L9 9 L15 2' stroke='%230072B2' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="vendor/katex/katex.min.css">
+<link rel="stylesheet" href="css/style.css">
+<script>
+  // apply the saved theme before the page paints
+  try { const t = localStorage.getItem("theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) { /* storage blocked */ }
+</script>
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="#top">ARIMA + Neural Network</a>
+    <nav class="menu" aria-label="Sections">
+      <a href="#idea">The idea</a>
+      <a href="#explorer">Results</a>
+      <a href="#residuals">Residuals</a>
+      <a href="#stationarity">Stationarity</a>
+      <a href="#breakeven">Break-even</a>
+      <a href="#formlab">Add or multiply</a>
+      <a href="#rolling">Rolling</a>
+      <a href="#seedfan">Seeds</a>
+      <a href="#margin">Scale margin</a>
+      <a href="#grid">Alternatives</a>
+      <a href="#about">About</a>
+      <a id="playground-link" class="external" href="#">Draw your own series</a>
+    </nav>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch between light and dark mode">Dark mode</button>
+  </div>
+</header>
+
+<main id="top">
+  <div class="hero">
+    <h1>Does adding a neural network to ARIMA forecast better?</h1>
+    <p>Zhang (2003) forecasts a series as an ARIMA forecast plus a neural-network forecast of ARIMA's errors. We reproduced the method,
+      built an Extension that lets one network combine everything, and tested both on 11 datasets with stricter validation.
+      Every number and curve on this page is loaded from the files our Python code wrote.</p>
+  </div>
+
+  <section class="panel" id="idea" aria-labelledby="idea-h">
+    <h2 id="idea-h">1. The idea, step by step</h2>
+    <p class="lead">Zhang's hybrid splits a series into a part ARIMA can predict and a leftover part a neural network tries to predict.
+      Step through it on a real test set.</p>
+    <div class="controls">
+      <label class="control"><span class="label">Dataset</span><select id="idea-dataset"></select></label>
+      <button class="btn" id="idea-back" type="button">Back</button>
+      <button class="btn primary" id="idea-next" type="button">Next</button>
+      <button class="btn" id="idea-play" type="button" aria-pressed="false">Play</button>
+    </div>
+    <div class="stepper">
+      <div class="step-text" aria-live="polite">
+        <div class="step-no" id="idea-stepno"></div>
+        <h3 id="idea-title"></h3>
+        <div class="eq" id="idea-eq"></div>
+        <p id="idea-text"></p>
+        <div class="dots" id="idea-dots" role="group" aria-label="Steps"></div>
+      </div>
+      <div>
+        <div class="chart tall" id="idea-chart" role="img" aria-label="Walkthrough chart"></div>
+        <p class="notice" id="idea-notice"></p>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="explorer" aria-labelledby="explorer-h">
+    <h2 id="explorer-h">2. Results explorer</h2>
+    <p class="lead">Forecasts on the test part of every dataset. Choose a protocol: the <b>fixed split</b> fits each model once, as Zhang did;
+      the <b>rolling origin</b> chooses settings on validation data only and refits while moving through the test part.</p>
+    <div class="controls">
+      <label class="control"><span class="label">Dataset</span><select id="ex-dataset"></select></label>
+      <span class="control"><span class="label">Protocol</span>
+        <span class="segmented" id="ex-protocol" role="group" aria-label="Protocol">
+          <button type="button" data-value="fixed" aria-pressed="true">Fixed split</button>
+          <button type="button" data-value="rolling" aria-pressed="false">Rolling origin</button>
+        </span></span>
+      <label class="control"><span class="label">Metric cards for</span><select id="ex-focus"></select></label>
+    </div>
+    <div class="controls">
+      <fieldset><legend>Models</legend><div class="checks" id="ex-models"></div></fieldset>
+      <fieldset><legend>Layers</legend><div class="checks" id="ex-layers"></div></fieldset>
+    </div>
+    <div class="cards" id="ex-cards"></div>
+    <div class="chart tall" id="ex-chart" role="img" aria-label="Actual against forecast"></div>
+    <p class="notice" id="ex-notice"></p>
+    <h3>All selected models</h3>
+    <div id="ex-table"></div>
+  </section>
+
+  <section class="panel" id="residuals" aria-labelledby="res-h">
+    <h2 id="res-h">3. Residual lab</h2>
+    <p class="lead">The hybrid only helps if ARIMA's errors still contain a pattern. Look at the errors on the test part, and at the tests we ran on them.</p>
+    <div class="controls">
+      <label class="control"><span class="label">Dataset</span><select id="res-dataset"></select></label>
+      <label class="control"><span class="label">Errors of</span><select id="res-model"></select></label>
+    </div>
+    <div class="badges" id="res-badges"></div>
+    <p class="notice" id="res-finding"></p>
+    <div class="grid-2">
+      <div class="chart short" id="res-time" role="img" aria-label="Errors over time"></div>
+      <div class="chart short" id="res-acf" role="img" aria-label="Autocorrelation of errors"></div>
+      <div class="chart short" id="res-hist" role="img" aria-label="Histogram of errors"></div>
+      <div class="chart short" id="res-qq" role="img" aria-label="Normal QQ plot"></div>
+    </div>
+    <p class="notice" id="res-notice"></p>
+    <h3>Nonlinearity found in ARIMA's errors, and did Zhang's hybrid improve?</h3>
+    <div id="res-table"></div>
+  </section>
+
+  <section class="panel" id="stationarity" aria-labelledby="st-h">
+    <h2 id="st-h">4. Stationarity</h2>
+    <p class="lead">ARIMA needs a series whose mean and variance do not drift. Differencing (taking changes from one step to the next) usually fixes a drift.</p>
+    <div class="controls"><label class="control"><span class="label">Dataset</span><select id="st-dataset"></select></label></div>
+    <div class="badges" id="st-badges"></div>
+    <div class="chart tall" id="st-chart" role="img" aria-label="Training series and its first difference"></div>
+    <p class="notice" id="st-notice"></p>
+    <h3>All datasets (rows where ADF and KPSS disagree are highlighted)</h3>
+    <div id="st-table"></div>
+  </section>
+
+  <section class="panel" id="breakeven" aria-labelledby="be-h">
+    <h2 id="be-h">5. Break-even map: when does the network pay off?</h2>
+    <p class="lead" id="be-lead"></p>
+    <div class="chart tall" id="be-chart" role="img" aria-label="Best model per noise level and nonlinear strength"></div>
+    <p class="notice" id="be-notice"></p>
+  </section>
+
+  <section class="panel" id="formlab" aria-labelledby="fl-h">
+    <h2 id="fl-h">6. Additive versus multiplicative lab</h2>
+    <p class="lead" id="fl-lead"></p>
+    <div class="controls">
+      <span class="control"><span class="label">Generating form</span>
+        <span class="segmented" id="fl-form" role="group" aria-label="Generating form">
+          <button type="button" data-value="additive" aria-pressed="true">Additive  L + N</button>
+          <button type="button" data-value="multiplicative" aria-pressed="false">Multiplicative  L × (1 + N)</button>
+        </span></span>
+      <label class="control"><span class="label">Nonlinear strength</span><input type="range" id="fl-strength" min="0" step="1"><output id="fl-strength-out"></output></label>
+    </div>
+    <div class="chart" id="fl-chart" role="img" aria-label="Test MSE per model"></div>
+    <p class="notice" id="fl-notice"></p>
+  </section>
+
+  <section class="panel" id="rolling" aria-labelledby="ro-h">
+    <h2 id="ro-h">7. Rolling-origin evaluation, one step at a time</h2>
+    <p class="lead">Each forecast uses only data before it. The shaded area is the training window of the model that made the forecast; the model is refitted at a few origins as the window grows.</p>
+    <div class="controls">
+      <span class="control"><span class="label">Dataset</span>
+        <span class="segmented" id="ro-dataset" role="group" aria-label="Dataset">
+          <button type="button" data-value="Lynx" aria-pressed="true">Lynx</button>
+          <button type="button" data-value="Nile" aria-pressed="false">Nile</button>
+        </span></span>
+      <button class="btn primary" id="ro-play" type="button" aria-pressed="false">Play</button>
+      <label class="control"><span class="label">Test point</span><input type="range" id="ro-step" min="0" step="1"><output id="ro-step-out"></output></label>
+    </div>
+    <div class="chart tall" id="ro-chart" role="img" aria-label="Rolling-origin forecasts"></div>
+    <p class="notice" id="ro-notice"></p>
+  </section>
+
+  <section class="panel" id="seedfan" aria-labelledby="sf-h">
+    <h2 id="sf-h">8. Seed fan: how much do random starts matter?</h2>
+    <p class="lead">A neural network starts from random weights. We trained every network from 10 different starting points (seeds 0–9); the band shows the range of their forecasts.</p>
+    <div class="controls"><label class="control"><span class="label">Dataset</span><select id="sf-dataset"></select></label></div>
+    <div class="chart tall" id="sf-chart" role="img" aria-label="Forecast band across seeds"></div>
+    <p class="notice" id="sf-notice"></p>
+  </section>
+
+  <section class="panel" id="margin" aria-labelledby="mg-h">
+    <h2 id="mg-h">9. Scale margin: forecasting a record peak</h2>
+    <p class="lead" id="mg-lead"></p>
+    <div class="controls">
+      <label class="control"><span class="label">Scale margin</span><input type="range" id="mg-margin" min="0" step="1"><output id="mg-margin-out"></output></label>
+    </div>
+    <div class="cards" id="mg-cards"></div>
+    <div class="chart tall" id="mg-chart" role="img" aria-label="Sunspot forecasts around the record peak"></div>
+    <p class="notice" id="mg-notice"></p>
+  </section>
+
+  <section class="panel" id="grid" aria-labelledby="gr-h">
+    <h2 id="gr-h">10. Alternative hybrids</h2>
+    <p class="lead">Replace ARIMA and the network by other models, and try four ways of combining them: 105 designs per dataset, all tuned on validation data only.</p>
+    <div class="controls">
+      <label class="control"><span class="label">Dataset</span><select id="gr-dataset"></select></label>
+      <label class="control"><span class="label">Combiner</span><select id="gr-combiner"></select></label>
+    </div>
+    <p class="notice" id="gr-baseline"></p>
+    <div class="chart tall" id="gr-chart" role="img" aria-label="Test error of every design relative to the best single model"></div>
+    <p class="notice" id="gr-notice"></p>
+    <h3>Ranked designs</h3>
+    <div id="gr-table"></div>
+  </section>
+
+  <section class="panel" id="about" aria-labelledby="ab-h">
+    <h2 id="ab-h">11. About and reproduce</h2>
+    <div class="grid-2">
+      <div>
+        <h3>Project</h3>
+        <p>DA 3041 course project, Indian Institute of Technology Guwahati.<br>
+          Arnav Sinha, Arghya Ojha, Kanhav Purohit, Mohammad Shafqat Jabbar.</p>
+        <p><a id="repo-link" href="#">Source code on GitHub</a> · <a href="report.pdf">Read the report (PDF)</a></p>
+        <h3>Paper reproduced</h3>
+        <p>G. P. Zhang (2003). Time series forecasting using a hybrid ARIMA and neural network model. <i>Neurocomputing</i> 50, 159–175.</p>
+        <h3>Cite this project</h3>
+        <pre class="cmd">Sinha, A., Ojha, A., Purohit, K., Jabbar, M. S. (2026). Hybrid ARIMA and Neural Network
+Forecasting Revisited: Reproduction, Stricter Validation and Alternatives.
+DA 3041 course project, IIT Guwahati.</pre>
+      </div>
+      <div>
+        <h3>Run the code</h3>
+        <pre class="cmd">pip install -r requirements.txt
+python run_all.py --quick                       # a few minutes
+python run_all.py --full                        # every result, about 54 minutes
+python -m pytest tests_check_everything_works</pre>
+        <h3>Rebuild this site's data</h3>
+        <pre class="cmd">python website/export_json.py
+python website/website_experiments.py
+python website/build_site_data.py
+cd website/research_site && python -m http.server 8000</pre>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>All numbers are loaded from JSON written by the project's Python code. Charts by Plotly; equations by KaTeX.</footer>
+
+<script src="vendor/plotly-2.35.2.min.js"></script>
+<script src="vendor/katex/katex.min.js"></script>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>

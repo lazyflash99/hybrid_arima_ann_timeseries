@@ -1,0 +1,39 @@
+{
+ "mode": "full",
+ "versions": {
+  "python": "3.12.4",
+  "numpy": "2.2.3",
+  "pandas": "2.3.3",
+  "scipy": "1.16.2",
+  "statsmodels": "0.15.0",
+  "matplotlib": "3.10.6",
+  "scikit-learn": "1.6.1",
+  "arch": "8.0.0",
+  "PyWavelets": "1.10.0",
+  "lightgbm": "4.6.0",
+  "torch": "2.5.1+cu121"
+ },
+ "steps": {
+  "datasets": 1.6,
+  "stationarity": 33.6,
+  "validation": 562.1,
+  "decomposition": 39.2,
+  "residuals": 30.6,
+  "framework": 1077.5,
+  "paper replication": 31.4,
+  "extension experiments": 32.7,
+  "all variants, 10 seeds": 405.1,
+  "extension report": 43.8,
+  "margin tuning": 211.7,
+  "error-input tuning": 269.7,
+  "past-value tuning": 229.8,
+  "input-design tests": 51.9,
+  "no-forecast-input test": 63.0,
+  "error figure": 72.7,
+  "slide figures": 36.4,
+  "summary": 2.7,
+  "json export": 23.8,
+  "result checks": 2.7,
+  "report tables": 4.4
+ }
+}

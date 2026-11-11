@@ -1,0 +1,254 @@
+protocol,dataset,model,mcs_p,in_90pct_set
+fixed,Sunspot,ARIMA,0.177,True
+fixed,Sunspot,ANN,0.15,True
+fixed,Sunspot,Zhang,1.0,True
+fixed,Sunspot,Extension,0.845,True
+fixed,Sunspot,Extension margin,0.945,True
+fixed,Sunspot,E1,0.945,True
+fixed,Sunspot,E2,0.767,True
+fixed,Sunspot,E3,0.845,True
+fixed,Sunspot,E4,0.945,True
+fixed,Sunspot,E5,0.279,True
+fixed,Sunspot,E6,0.732,True
+fixed,Sunspot,E7,0.089,False
+rolling,Sunspot,ARIMA,0.297,True
+rolling,Sunspot,ANN,0.434,True
+rolling,Sunspot,Zhang,0.97,True
+rolling,Sunspot,Extension,0.697,True
+rolling,Sunspot,E1,0.966,True
+rolling,Sunspot,E2,0.852,True
+rolling,Sunspot,E3,1.0,True
+rolling,Sunspot,E4,0.97,True
+rolling,Sunspot,E5,0.88,True
+rolling,Sunspot,E6,0.697,True
+rolling,Sunspot,E7,0.02,False
+fixed,Lynx,ARIMA,0.786,True
+fixed,Lynx,ANN,0.786,True
+fixed,Lynx,Zhang,0.598,True
+fixed,Lynx,Extension,0.786,True
+fixed,Lynx,Extension margin,0.598,True
+fixed,Lynx,E1,0.771,True
+fixed,Lynx,E2,0.025,False
+fixed,Lynx,E3,0.771,True
+fixed,Lynx,E4,0.771,True
+fixed,Lynx,E5,0.0,False
+fixed,Lynx,E6,1.0,True
+fixed,Lynx,E7,0.786,True
+rolling,Lynx,ARIMA,0.982,True
+rolling,Lynx,ANN,0.884,True
+rolling,Lynx,Zhang,0.966,True
+rolling,Lynx,Extension,1.0,True
+rolling,Lynx,E1,0.002,False
+rolling,Lynx,E2,0.982,True
+rolling,Lynx,E3,0.982,True
+rolling,Lynx,E4,0.972,True
+rolling,Lynx,E5,0.884,True
+rolling,Lynx,E6,0.962,True
+rolling,Lynx,E7,0.982,True
+fixed,Exchange rate,ARIMA,0.967,True
+fixed,Exchange rate,ANN,0.983,True
+fixed,Exchange rate,Zhang,0.983,True
+fixed,Exchange rate,Extension,0.994,True
+fixed,Exchange rate,Extension margin,0.994,True
+fixed,Exchange rate,E1,0.994,True
+fixed,Exchange rate,E2,0.983,True
+fixed,Exchange rate,E3,0.835,True
+fixed,Exchange rate,E4,0.994,True
+fixed,Exchange rate,E5,1.0,True
+fixed,Exchange rate,E6,0.994,True
+fixed,Exchange rate,E7,0.881,True
+rolling,Exchange rate,ARIMA,0.835,True
+rolling,Exchange rate,ANN,0.835,True
+rolling,Exchange rate,Zhang,0.693,True
+rolling,Exchange rate,Extension,0.149,True
+rolling,Exchange rate,E1,0.882,True
+rolling,Exchange rate,E2,0.798,True
+rolling,Exchange rate,E3,1.0,True
+rolling,Exchange rate,E4,0.835,True
+rolling,Exchange rate,E5,0.882,True
+rolling,Exchange rate,E6,0.833,True
+rolling,Exchange rate,E7,0.785,True
+fixed,AirPassengers,ARIMA,0.373,True
+fixed,AirPassengers,ANN,0.0,False
+fixed,AirPassengers,Zhang,0.171,True
+fixed,AirPassengers,Extension,0.001,False
+fixed,AirPassengers,Extension margin,0.019,False
+fixed,AirPassengers,E1,0.373,True
+fixed,AirPassengers,E2,0.407,True
+fixed,AirPassengers,E3,1.0,True
+fixed,AirPassengers,E4,0.407,True
+fixed,AirPassengers,E5,0.407,True
+fixed,AirPassengers,E6,0.171,True
+fixed,AirPassengers,E7,0.373,True
+rolling,AirPassengers,ARIMA,0.144,True
+rolling,AirPassengers,ANN,0.01,False
+rolling,AirPassengers,Zhang,0.287,True
+rolling,AirPassengers,Extension,0.286,True
+rolling,AirPassengers,E1,0.144,True
+rolling,AirPassengers,E2,0.286,True
+rolling,AirPassengers,E3,1.0,True
+rolling,AirPassengers,E4,0.112,True
+rolling,AirPassengers,E5,0.286,True
+rolling,AirPassengers,E6,0.287,True
+rolling,AirPassengers,E7,0.144,True
+fixed,Nile,ARIMA,0.522,True
+fixed,Nile,ANN,0.735,True
+fixed,Nile,Zhang,0.998,True
+fixed,Nile,Extension,0.998,True
+fixed,Nile,Extension margin,0.989,True
+fixed,Nile,E1,0.506,True
+fixed,Nile,E2,0.998,True
+fixed,Nile,E3,1.0,True
+fixed,Nile,E4,0.825,True
+fixed,Nile,E5,0.894,True
+fixed,Nile,E6,0.991,True
+fixed,Nile,E7,0.998,True
+rolling,Nile,ARIMA,0.47,True
+rolling,Nile,ANN,0.408,True
+rolling,Nile,Zhang,0.948,True
+rolling,Nile,Extension,0.772,True
+rolling,Nile,E1,0.614,True
+rolling,Nile,E2,0.948,True
+rolling,Nile,E3,1.0,True
+rolling,Nile,E4,0.841,True
+rolling,Nile,E5,0.791,True
+rolling,Nile,E6,0.882,True
+rolling,Nile,E7,0.791,True
+fixed,Daily min temp,ARIMA,0.94,True
+fixed,Daily min temp,ANN,0.508,True
+fixed,Daily min temp,Zhang,0.32,True
+fixed,Daily min temp,Extension,0.94,True
+fixed,Daily min temp,Extension margin,0.627,True
+fixed,Daily min temp,E1,1.0,True
+fixed,Daily min temp,E2,0.848,True
+fixed,Daily min temp,E3,0.508,True
+fixed,Daily min temp,E4,0.508,True
+fixed,Daily min temp,E5,0.508,True
+fixed,Daily min temp,E6,0.94,True
+fixed,Daily min temp,E7,0.006,False
+rolling,Daily min temp,ARIMA,0.612,True
+rolling,Daily min temp,ANN,0.449,True
+rolling,Daily min temp,Zhang,0.539,True
+rolling,Daily min temp,Extension,0.997,True
+rolling,Daily min temp,E1,1.0,True
+rolling,Daily min temp,E2,0.876,True
+rolling,Daily min temp,E3,0.363,True
+rolling,Daily min temp,E4,0.539,True
+rolling,Daily min temp,E5,0.449,True
+rolling,Daily min temp,E6,0.997,True
+rolling,Daily min temp,E7,0.174,True
+fixed,FX JPY,ARIMA,0.965,True
+fixed,FX JPY,ANN,0.0,False
+fixed,FX JPY,Zhang,0.947,True
+fixed,FX JPY,Extension,0.002,False
+fixed,FX JPY,Extension margin,0.997,True
+fixed,FX JPY,E1,0.997,True
+fixed,FX JPY,E2,0.965,True
+fixed,FX JPY,E3,0.997,True
+fixed,FX JPY,E4,1.0,True
+fixed,FX JPY,E5,0.997,True
+fixed,FX JPY,E6,0.838,True
+fixed,FX JPY,E7,0.002,False
+rolling,FX JPY,ARIMA,0.985,True
+rolling,FX JPY,ANN,0.008,False
+rolling,FX JPY,Zhang,0.79,True
+rolling,FX JPY,Extension,0.116,True
+rolling,FX JPY,E1,0.822,True
+rolling,FX JPY,E2,0.807,True
+rolling,FX JPY,E3,0.985,True
+rolling,FX JPY,E4,1.0,True
+rolling,FX JPY,E5,0.985,True
+rolling,FX JPY,E6,0.807,True
+rolling,FX JPY,E7,0.001,False
+fixed,Sunspot sqrt,ARIMA,0.068,False
+fixed,Sunspot sqrt,ANN,0.008,False
+fixed,Sunspot sqrt,Zhang,0.302,True
+fixed,Sunspot sqrt,Extension,0.465,True
+fixed,Sunspot sqrt,Extension margin,0.063,False
+fixed,Sunspot sqrt,E1,0.163,True
+fixed,Sunspot sqrt,E2,0.191,True
+fixed,Sunspot sqrt,E3,0.302,True
+fixed,Sunspot sqrt,E4,0.17,True
+fixed,Sunspot sqrt,E5,1.0,True
+fixed,Sunspot sqrt,E6,0.068,False
+fixed,Sunspot sqrt,E7,0.0,False
+rolling,Sunspot sqrt,ARIMA,0.301,True
+rolling,Sunspot sqrt,ANN,0.882,True
+rolling,Sunspot sqrt,Zhang,0.804,True
+rolling,Sunspot sqrt,Extension,0.648,True
+rolling,Sunspot sqrt,E1,0.804,True
+rolling,Sunspot sqrt,E2,0.723,True
+rolling,Sunspot sqrt,E3,0.717,True
+rolling,Sunspot sqrt,E4,1.0,True
+rolling,Sunspot sqrt,E5,0.882,True
+rolling,Sunspot sqrt,E6,0.882,True
+rolling,Sunspot sqrt,E7,0.383,True
+fixed,Synthetic additive,ARIMA,0.0,False
+fixed,Synthetic additive,ANN,0.0,False
+fixed,Synthetic additive,Zhang,0.0,False
+fixed,Synthetic additive,Extension,1.0,True
+fixed,Synthetic additive,Extension margin,0.001,False
+fixed,Synthetic additive,E1,0.0,False
+fixed,Synthetic additive,E2,0.0,False
+fixed,Synthetic additive,E3,0.0,False
+fixed,Synthetic additive,E4,0.0,False
+fixed,Synthetic additive,E5,0.0,False
+fixed,Synthetic additive,E6,0.0,False
+fixed,Synthetic additive,E7,0.0,False
+rolling,Synthetic additive,ARIMA,0.0,False
+rolling,Synthetic additive,ANN,0.0,False
+rolling,Synthetic additive,Zhang,0.0,False
+rolling,Synthetic additive,Extension,1.0,True
+rolling,Synthetic additive,E1,0.0,False
+rolling,Synthetic additive,E2,0.0,False
+rolling,Synthetic additive,E3,0.0,False
+rolling,Synthetic additive,E4,0.0,False
+rolling,Synthetic additive,E5,0.0,False
+rolling,Synthetic additive,E6,0.0,False
+rolling,Synthetic additive,E7,0.0,False
+fixed,Synthetic multiplicative,ARIMA,0.962,True
+fixed,Synthetic multiplicative,ANN,0.0,False
+fixed,Synthetic multiplicative,Zhang,0.39,True
+fixed,Synthetic multiplicative,Extension,0.558,True
+fixed,Synthetic multiplicative,Extension margin,0.602,True
+fixed,Synthetic multiplicative,E1,0.602,True
+fixed,Synthetic multiplicative,E2,0.39,True
+fixed,Synthetic multiplicative,E3,1.0,True
+fixed,Synthetic multiplicative,E4,0.623,True
+fixed,Synthetic multiplicative,E5,0.299,True
+fixed,Synthetic multiplicative,E6,0.396,True
+fixed,Synthetic multiplicative,E7,0.962,True
+rolling,Synthetic multiplicative,ARIMA,0.818,True
+rolling,Synthetic multiplicative,ANN,0.0,False
+rolling,Synthetic multiplicative,Zhang,0.91,True
+rolling,Synthetic multiplicative,Extension,0.068,False
+rolling,Synthetic multiplicative,E1,0.118,True
+rolling,Synthetic multiplicative,E2,0.993,True
+rolling,Synthetic multiplicative,E3,1.0,True
+rolling,Synthetic multiplicative,E4,0.993,True
+rolling,Synthetic multiplicative,E5,0.363,True
+rolling,Synthetic multiplicative,E6,0.91,True
+rolling,Synthetic multiplicative,E7,0.441,True
+fixed,Mackey-Glass,ARIMA,0.0,False
+fixed,Mackey-Glass,ANN,0.623,True
+fixed,Mackey-Glass,Zhang,0.0,False
+fixed,Mackey-Glass,Extension,0.162,True
+fixed,Mackey-Glass,Extension margin,0.0,False
+fixed,Mackey-Glass,E1,0.0,False
+fixed,Mackey-Glass,E2,0.0,False
+fixed,Mackey-Glass,E3,0.0,False
+fixed,Mackey-Glass,E4,0.0,False
+fixed,Mackey-Glass,E5,0.0,False
+fixed,Mackey-Glass,E6,0.972,True
+fixed,Mackey-Glass,E7,1.0,True
+rolling,Mackey-Glass,ARIMA,0.0,False
+rolling,Mackey-Glass,ANN,1.0,True
+rolling,Mackey-Glass,Zhang,0.0,False
+rolling,Mackey-Glass,Extension,0.0,False
+rolling,Mackey-Glass,E1,0.0,False
+rolling,Mackey-Glass,E2,0.0,False
+rolling,Mackey-Glass,E3,0.0,False
+rolling,Mackey-Glass,E4,0.0,False
+rolling,Mackey-Glass,E5,0.0,False
+rolling,Mackey-Glass,E6,0.372,True
+rolling,Mackey-Glass,E7,0.656,True

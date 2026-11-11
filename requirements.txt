@@ -1,0 +1,12 @@
+numpy==2.2.3
+pandas==2.3.3
+scipy==1.16.2
+statsmodels==0.15.0
+matplotlib==3.10.6
+scikit-learn==1.6.1
+arch==8.0.0
+PyWavelets==1.8.0
+pytest==9.2.0
+# optional: run without them (fallbacks: RandomForest instead of LightGBM, GRU skipped)
+lightgbm==4.6.0
+torch==2.5.1

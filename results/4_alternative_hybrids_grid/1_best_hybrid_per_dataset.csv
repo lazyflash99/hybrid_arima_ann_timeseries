@@ -1,0 +1,12 @@
+dataset,best_hybrid,best_hybrid_mse,best_single,best_single_mse,simple_baseline_wins,seasonal_strength,nonlinearity_detected
+Sunspot,Naive + LightGBM (additive),248.39317035244954,OLS AR,312.41371139492094,False,0.5282729193878986,True
+Lynx,Theta + MLP (joint-input),0.008448966515507516,MLP,0.01830663843781189,False,0.8972302540265937,False
+Exchange rate,Theta + LightGBM (validation-weighted),4.1666442558053115e-05,ARIMA,4.1999441448198514e-05,False,,True
+AirPassengers,SARIMA + LightGBM (validation-weighted),0.00020165586464896356,ETS,0.00020301304865215936,False,0.9564704635715254,True
+Nile,OLS AR + LightGBM (multiplicative),12691.272948037433,GRU,15309.85026978212,False,,False
+Daily min temp,Naive + LightGBM (joint-input),5.5613962529928616,LightGBM,5.581771608390831,False,0.9006567559361804,True
+FX JPY,Theta + LightGBM (multiplicative),2.776526281730368e-05,ARIMA,3.060666474938757e-05,False,,True
+Sunspot sqrt,OLS AR + LightGBM (additive),1.065261960313741,OLS AR,1.1154715910413633,False,0.6031043461402945,True
+Synthetic additive,SARIMA + LightGBM (joint-input),0.35541971131614875,LightGBM,0.3521242447036717,True,,True
+Synthetic multiplicative,ETS + SVR (joint-input),8.577312117174781,GRU,8.575227274059776,True,,False
+Mackey-Glass,Naive + SVR (additive),2.962173061672705e-05,SVR,3.244995951203272e-05,False,,True
